@@ -1,0 +1,25 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    background-color: #6de63d;
+}
+
+.imagen-texto{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.enlace {
+    font-weight: 800;
+}
+
+.index-container {
+    background-color: #ffffff;
+    border: 3px solid black;
+    border-radius: 5px;
+}
