@@ -65,7 +65,7 @@ INSERT INTO eme_habilidad(id,id_emergencia,id_habilidad) VALUES
 (12,2,13);
 
 -- Cargar datos de tarea
-INSERT into tarea(id, nombre, descripcion, id_estado_tarea,id_emergencia) VALUES
+INSERT into tarea(id, nombre, descripcion, id_estado_tarea, id_emergencia) VALUES
 (1, 'Quitar escombros', 'Sacar los escombros de las casas', 1, 1),
 (2, 'Transportar ancianos', 'Ubicar a los ancianos en un lugar seguro', 2, 1),
 (3, 'Encontrar animales', 'Ubicar a las mascotas de los residentes', 3, 1),
@@ -488,3 +488,4 @@ INSERT INTO vol_habilidad(id,id_voluntario,id_habilidad) VALUES
 (199,50,6),
 (200,50,8);
 
+\i division_regional.sql;

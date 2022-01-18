@@ -6,6 +6,9 @@ CREATE DATABASE voluntariado;
 
 \c voluntariado;
 
+CREATE EXTENSION postgis;
+
+
 -- En caso existan las tablas se dropean
 
 DROP TABLE IF EXISTS habilidad CASCADE;
@@ -165,3 +168,23 @@ CREATE TABLE  ranking (
     created_at timestamp default now(),
     updated_at timestamp default now()
 );
+
+SET CLIENT_ENCODING TO UTF8;
+SET STANDARD_CONFORMING_STRINGS TO ON;
+BEGIN;
+CREATE TABLE "division_regional" (gid serial,
+"nom_reg" varchar(50),
+"nom_prov" varchar(20),
+"cod_com" varchar(5),
+"nom_com" varchar(30),
+"cod_regi" numeric,
+"superficie" numeric,
+"poblac02" int4,
+"pobl2010" int4,
+"shape_leng" numeric,
+"shape_area" numeric);
+ALTER TABLE "division_regional" ADD PRIMARY KEY (gid);
+SELECT AddGeometryColumn('','division_regional','geom','0','MULTIPOLYGON',2);
+
+
+
