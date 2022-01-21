@@ -37,17 +37,17 @@ INSERT INTO voluntario(id,estado_salud,nombre,apellido,correo_electronico, passw
 (10,'Bueno','Armando', 'Paredes', 'armando.paredes@gmail.com', 'armando123');
 
 -- Carga Datos para tabla emergencia
-INSERT INTO emergencia(id,nombre,ubicacion,fecha,descripcion) VALUES
-(1,'Terremoto 8.8 Richter','Chile', '2010-02-27', 'Terremoto de alta intensidad registrado en Chile'),
-(2,'Ogro destroza pantano cerca de ciudad','Santiago', '2021-12-27', 'Ogro enloquece y destroza pantano en las cercanías de Santiago, se solicitan refuerzos'),
-(3,'Terremoto 7.8 Richter','Arica', '2005-06-13','sismo de magnitud 7,8 que se percibe entre las regiones de Arica-Parinacota y Atacama'),
-(4, 'Anegamiento de carretera','Putre', '2016-02-23', 'Anegamiento en diversos puntos de la carretera 11 a causa de precipitaciones'),
-(5, 'Aluvion en caleta', 'Iquique', '2015-08-09', 'Aluvion en el sector de la caleta San Marcos'),
-(6, 'Caida de rocas en carretera', 'Antofagasta', '2017-01-22', 'Lluvias generan caida de rocas en la ruta 1'),
-(7, 'Desborde de rio', 'Alto del Carmen', '2017-01-22', 'Desborde del rio Chollay en Alto del Carmen afecta viviendas y caminos'),
-(8, 'Alud', 'Cabeza del Indio', '1984-07-03', 'Alud afecta al sector de Cabeza del Indio en el paso fronterizo Los Libertadores'),
-(9, 'Inundaciones por marejadas', 'Valparaiso', '2015-07-28', 'Marejadas causan inundacion de estacionamientos en Valparaiso, a la altura del Puente Quinta del estero Marga Marga'),
-(10, 'Desborde de canal', 'Maipu', '2016-03-17', 'Desborde del canal Santa Marta provoca anegamiento de las viviendas cercanas');
+INSERT INTO emergencia(id,nombre,ubicacion,fecha,descripcion, coordenadas) VALUES
+(1,'Terremoto 8.8 Richter','Chile', '2010-02-27', 'Terremoto de alta intensidad registrado en Chile', ST_GeomFromText('POINT(-33.45694 -70.64827)', 4326)),
+(2,'Ogro destroza pantano cerca de ciudad','Santiago', '2021-12-27', 'Ogro enloquece y destroza pantano en las cercanías de Santiago, se solicitan refuerzos', ST_GeomFromText('POINT(-33.45694 -70.64827)', 4326)),
+(3,'Terremoto 7.8 Richter','Arica', '2005-06-13','sismo de magnitud 7,8 que se percibe entre las regiones de Arica-Parinacota y Atacama', ST_GeomFromText('POINT(-18.4746 -70.29792)', 4326)),
+(4, 'Anegamiento de carretera','Putre', '2016-02-23', 'Anegamiento en diversos puntos de la carretera 11 a causa de precipitaciones', ST_GeomFromText('POINT(-18.4746 -70.29792)', 4326)),
+(5, 'Aluvion en caleta', 'Iquique', '2015-08-09', 'Aluvion en el sector de la caleta San Marcos', ST_GeomFromText('POINT(-18.4746 -70.29792)', 4326)),
+(6, 'Caida de rocas en carretera', 'Antofagasta', '2017-01-22', 'Lluvias generan caida de rocas en la ruta 1', ST_GeomFromText('POINT(-23.65236 -70.3954)', 4326)),
+(7, 'Desborde de rio', 'Alto del Carmen', '2017-01-22', 'Desborde del rio Chollay en Alto del Carmen afecta viviendas y caminos', ST_GeomFromText('POINT(-22.45667 -68.92371)', 4326)),
+(8, 'Alud', 'Cabeza del Indio', '1984-07-03', 'Alud afecta al sector de Cabeza del Indio en el paso fronterizo Los Libertadores', ST_GeomFromText('POINT(-41.4693 -72.94237)', 4326)),
+(9, 'Inundaciones por marejadas', 'Valparaiso', '2015-07-28', 'Marejadas causan inundacion de estacionamientos en Valparaiso, a la altura del Puente Quinta del estero Marga Marga', ST_GeomFromText('POINT(-33.036 -71.62963)', 4326)),
+(10, 'Desborde de canal', 'Maipu', '2016-03-17', 'Desborde del canal Santa Marta provoca anegamiento de las viviendas cercanas', ST_GeomFromText('POINT(-33.61169 -70.57577)', 4326));
 
 -- Carga datos para tabla eme_habilidad
 INSERT INTO eme_habilidad(id,id_emergencia,id_habilidad) VALUES
@@ -65,27 +65,27 @@ INSERT INTO eme_habilidad(id,id_emergencia,id_habilidad) VALUES
 (12,2,13);
 
 -- Cargar datos de tarea
-INSERT into tarea(id, nombre, descripcion, id_estado_tarea, id_emergencia) VALUES
-(1, 'Quitar escombros', 'Sacar los escombros de las casas', 1, 1),
-(2, 'Transportar ancianos', 'Ubicar a los ancianos en un lugar seguro', 2, 1),
-(3, 'Encontrar animales', 'Ubicar a las mascotas de los residentes', 3, 1),
-(4, 'Rastrear personas', 'Ubicar a las personas desaparecidas', 4, 1),
-(5, 'Contar heridos', 'Contabilizar a las personas heridas', 1, 1),
-(6, 'Trasladar heridos', 'Trasladar a las personas heridas para recibir atencion medica', 2, 1),
-(7, 'Identificar fallecidos', 'Identificar el nombre de los cuerpos fallecidos', 3, 1),
-(8, 'Evacuar adultos mayores', 'Reubicar adultos mayores de zonas de peligro', 4, 1),
-(9, 'Evacuar personas', 'Reubicar a la poblacion en zonas de peligro', 2, 1),
-(10, 'Vendar heridos', 'Atender lesiones menores de personas', 2, 1),
-(11, 'Tratar heridas graves', 'Atender a las personas con heridas que involucren un peligro de muerte', 1, 2),
-(12, 'Limpiar', 'Eliminar desechos de la zona', 2, 2),
-(13, 'Encontrar heridos', 'Ubicar a personas inconscientes', 3, 2),
-(14, 'Vendar animales', 'Atender heridas leves en animales', 3, 2),
-(15, 'Medicar personas', 'Recetar farmacos a personas', 1, 2),
-(16, 'Medicar animales', 'Recetar farmacos para animales', 3, 2),
-(17, 'Apagar incendio', 'Extingir llamas de un recinto', 4, 2),
-(18, 'Repartir comida', 'Distribuir comida entre los afectados', 1, 2),
-(19, 'Repartir agua', 'Distribuir agua entre los afectados', 3, 2),
-(20, 'Repartir medicamentos', 'Distribuir medicamentos entre los afectados', 3, 2);
+INSERT into tarea(id, nombre, descripcion, id_estado_tarea, id_emergencia, coordenadas) VALUES
+(1, 'Quitar escombros', 'Sacar los escombros de las casas', 1, 1, ST_GeomFromText('POINT(-33.45694 -70.64827)', 4326)),
+(2, 'Transportar ancianos', 'Ubicar a los ancianos en un lugar seguro', 2, 1, ST_GeomFromText('POINT(-33.61169 -70.57577)', 4326)),
+(3, 'Encontrar animales', 'Ubicar a las mascotas de los residentes', 3, 1, ST_GeomFromText('POINT(-23.65236 -70.3954)', 4326)),
+(4, 'Rastrear personas', 'Ubicar a las personas desaparecidas', 4, 1, ST_GeomFromText('POINT(-33.02457 -71.55183)', 4326)),
+(5, 'Contar heridos', 'Contabilizar a las personas heridas', 1, 1, ST_GeomFromText('POINT(-33.036 -71.62963)', 4326)),
+(6, 'Trasladar heridos', 'Trasladar a las personas heridas para recibir atencion medica', 2, 1, ST_GeomFromText('POINT(-36.72494 -73.11684)',4326)),
+(7, 'Identificar fallecidos', 'Identificar el nombre de los cuerpos fallecidos', 3, 1, ST_GeomFromText('POINT(-33.59217 -70.6996)',4326)),
+(8, 'Evacuar adultos mayores', 'Reubicar adultos mayores de zonas de peligro', 4, 1, ST_GeomFromText('POINT(-38.73965 -72.59842)', 4326)),
+(9, 'Evacuar personas', 'Reubicar a la poblacion en zonas de peligro', 2, 1, ST_GeomFromText('POINT(-20.21326 -70.15027)', 4326)),
+(10, 'Vendar heridos', 'Atender lesiones menores de personas', 2, 1, ST_GeomFromText('POINT(-36.82699 -73.04977)', 4326)),
+(11, 'Tratar heridas graves', 'Atender a las personas con heridas que involucren un peligro de muerte', 1, 2, ST_GeomFromText('POINT(-34.17083 -70.74444)', 4326)),
+(12, 'Limpiar', 'Eliminar desechos de la zona', 2, 2, ST_GeomFromText('POINT(-33.58331 -70.63419)', 4326)),
+(13, 'Encontrar heridos', 'Ubicar a personas inconscientes', 3, 2, ST_GeomFromText('POINT(-35.4264 -71.65542)', 4326)),
+(14, 'Vendar animales', 'Atender heridas leves en animales', 3, 2, ST_GeomFromText('POINT(-18.4746 -70.29792)', 4326)),
+(15, 'Medicar personas', 'Recetar farmacos a personas', 1, 2, ST_GeomFromText('POINT(-29.95332 -71.33947)', 4326)),
+(16, 'Medicar animales', 'Recetar farmacos para animales', 3, 2, ST_GeomFromText('POINT(-41.4693 -72.94237)', 4326)),
+(17, 'Apagar incendio', 'Extingir llamas de un recinto', 4, 2, ST_GeomFromText('POINT(-29.90453 -71.24894)', 4326)),
+(18, 'Repartir comida', 'Distribuir comida entre los afectados', 1, 2, ST_GeomFromText('POINT(-29.90453 -71.24894)', 4326)),
+(19, 'Repartir agua', 'Distribuir agua entre los afectados', 3, 2, ST_GeomFromText('POINT(-36.60664 -72.10344)', 4326)),
+(20, 'Repartir medicamentos', 'Distribuir medicamentos entre los afectados', 3, 2, ST_GeomFromText('POINT(-33.04222 -71.37333)', 4326));
 
 
 -- Carga datos para tabla ranking
