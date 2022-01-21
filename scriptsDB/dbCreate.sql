@@ -47,6 +47,8 @@ CREATE TABLE  emergencia (
     updated_at timestamp default now()
 );
 
+ALTER TABLE emergencia ADD COLUMN coordenadas geometry(point);
+
 
 CREATE INDEX idx_emergencia_nombre ON emergencia(nombre);
 
@@ -107,6 +109,8 @@ CREATE TABLE IF NOT EXISTS tarea(
     updated_at timestamp default now()
 );
 CREATE INDEX idx_tarea_nombre ON tarea(nombre);
+
+ALTER TABLE tarea ADD COLUMN coordenadas geometry(point);
 
 CREATE TABLE IF NOT EXISTS voluntario(
 	id serial NOT NULL,
@@ -169,22 +173,7 @@ CREATE TABLE  ranking (
     updated_at timestamp default now()
 );
 
-SET CLIENT_ENCODING TO UTF8;
-SET STANDARD_CONFORMING_STRINGS TO ON;
-BEGIN;
-CREATE TABLE "division_regional" (gid serial,
-"nom_reg" varchar(50),
-"nom_prov" varchar(20),
-"cod_com" varchar(5),
-"nom_com" varchar(30),
-"cod_regi" numeric,
-"superficie" numeric,
-"poblac02" int4,
-"pobl2010" int4,
-"shape_leng" numeric,
-"shape_area" numeric);
-ALTER TABLE "division_regional" ADD PRIMARY KEY (gid);
-SELECT AddGeometryColumn('','division_regional','geom','0','MULTIPOLYGON',2);
+
 
 
 
