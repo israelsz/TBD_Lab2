@@ -11,6 +11,8 @@ public class Tarea {
     private Date created_at;
     private Date updated_at;
     private Integer id_emergencia;
+    private String coordenadas;
+
 
     //Getters y Setters
     public int getId() {
@@ -53,4 +55,13 @@ public class Tarea {
     public void setUpdateAt(Date fecha) {
         this.updated_at = fecha;
     }
+
+
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
 }

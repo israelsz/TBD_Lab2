@@ -22,8 +22,8 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public Tarea createTarea(Tarea tarea) {
         final String sql =
-                "INSERT INTO tarea (id, nombre, descripcion, id_estado_tarea, id_emergencia) " +
-                        "VALUES (:id ,:nombre, :descripcion, :id_estado_tarea, :id_emergencia )";
+                "INSERT INTO tarea (id, nombre, descripcion, id_estado_tarea, id_emergencia, coordenadas) " +
+                        "VALUES (:id ,:nombre, :descripcion, :id_estado_tarea, :id_emergencia, ST_GeomFromText(:coordenadas))";
 
 
         try(Connection conn = sql2o.open()){
@@ -34,6 +34,7 @@ public class TareaRepositoryImp implements TareaRepository{
                     .addParameter("descripcion", tarea.getDescripcion())
                     .addParameter("id_estado_tarea", tarea.getIdEstadoTarea())
                     .addParameter("id_emergencia", tarea.getIdEmergencia())
+                    .addParameter("coordenadas","POINT("+tarea.getCoordenadas()+")")
                     .executeUpdate();
             tarea.setId(idNuevo);
             return tarea;
@@ -59,8 +60,8 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public String updateTarea(int id, Tarea tarea) {
         String updateSql = "UPDATE tarea " +
-                "SET nombre = :tareaNombre, descripcion = :tareaDescripcion, " +
-                "id_estado_tarea = :tareaid_estado_tarea, id_emergencia = :tareaid_emergencia, updated_at = :tareaNuevaFecha " +
+                "SET nombre = :tareaNombre, descripcion = :tareaDescripcion,  " +
+                "id_estado_tarea = :tareaid_estado_tarea, id_emergencia = :tareaid_emergencia, coordenadas = ST_GeomFromText(:coordenadas), updated_at = :tareaNuevaFecha " +
                 "WHERE id = :tareaID";
 
         Date fecha = new Date();
@@ -98,6 +99,11 @@ public class TareaRepositoryImp implements TareaRepository{
                 consulta.addParameter("tareaid_emergencia", tarea.getIdEmergencia());
             } else {
                 consulta.addParameter("tareaid_emergencia", antiguo.getIdEmergencia());
+            }
+            if(tarea.getCoordenadas() != null){
+                consulta.addParameter("coordenadas","POINT("+tarea.getCoordenadas()+")");
+            } else {
+                consulta.addParameter("coordenadas","POINT("+antiguo.getCoordenadas()+")");
             }
             consulta.addParameter("tareaNuevaFecha", timestamp);
             consulta.executeUpdate();
