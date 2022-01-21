@@ -34,23 +34,24 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     @Override
     public String createEmergencia(Emergencia emergencia) {
         String sql =
-                "INSERT INTO emergencia (id, nombre, ubicacion, fecha, descripcion) " +
-                        "VALUES (:id, :nombre, :ubicacion, :fecha, :descripcion)";
+                "INSERT INTO emergencia (id, nombre, ubicacion, fecha, descripcion,coordenadas) " +
+                        "VALUES (:id, :nombre, :ubicacion, :fecha, :descripcion,ST_GeomFromText(:coordenadas))";
 
         int nuevoId = getIdEmergenciaMayor() + 1;
 
-        try(Connection conn = sql2o.open()){
-           conn.createQuery(sql)
+        try (Connection conn = sql2o.open()) {
+            conn.createQuery(sql)
                     .addParameter("id", nuevoId)
                     .addParameter("nombre", emergencia.getNombre())
                     .addParameter("ubicacion", emergencia.getUbicacion())
                     .addParameter("fecha", emergencia.getFecha())
                     .addParameter("descripcion", emergencia.getDescripcion())
+                    .addParameter("coordenadas","POINT("+emergencia.getCoordenadas()+")")
                     .executeUpdate();
 
             return "Se ha creado la emergencia con id: " + nuevoId;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
@@ -87,7 +88,8 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public String updateEmergencia(int id, Emergencia emergencia) {
         String updateSql = "UPDATE emergencia " +
                             "SET nombre = :emergenciaNombre, ubicacion = :emergenciaUbicacion, " +
-                            "fecha = :emergenciaFecha, descripcion = :emergenciaDescripcion, updated_at = :emergenciaFechaActualizacion " +
+                            "fecha = :emergenciaFecha, descripcion = :emergenciaDescripcion, updated_at = :emergenciaFechaActualizacion, " +
+                            "coordenadas = ST_GeomFromText(:emergenciaCoordenadas)"+
                             "WHERE id = :emergenciaID";
 
         //Se colnsigue el timestamp actual para la actualización
@@ -135,6 +137,11 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
                 consulta.addParameter("emergenciaDescripcion", antiguo.getDescripcion());
             }
 
+            if (emergencia.getCoordenadas()!=null){
+                consulta.addParameter("emergenciaCoordenadas","POINT("+emergencia.getCoordenadas()+")");
+            }else {
+                consulta.addParameter("emergenciaCoordenadas",antiguo.getCoordenadas());
+            }
             //Se cambia la fecha de actualizacion
             consulta.addParameter("emergenciaFechaActualizacion",timestamp);
 

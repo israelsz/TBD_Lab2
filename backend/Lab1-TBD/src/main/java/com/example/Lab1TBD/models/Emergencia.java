@@ -10,6 +10,7 @@ public class Emergencia {
     private String ubicacion;
     private Date fecha;
     private String descripcion;
+    private String coordenadas;
     private Date created_at;
     private Date updated_at;
 
@@ -69,6 +70,10 @@ public class Emergencia {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
-
-
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+    public void setCoordenadas(String coordenadas) {
+        this.coordenadas = coordenadas;
+    }
 }
