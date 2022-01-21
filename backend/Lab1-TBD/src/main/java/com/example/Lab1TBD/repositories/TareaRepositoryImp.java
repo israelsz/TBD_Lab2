@@ -23,7 +23,7 @@ public class TareaRepositoryImp implements TareaRepository{
     public Tarea createTarea(Tarea tarea) {
         final String sql =
                 "INSERT INTO tarea (id, nombre, descripcion, id_estado_tarea, id_emergencia, coordenadas) " +
-                        "VALUES (:id ,:nombre, :descripcion, :id_estado_tarea, :id_emergencia, ST_GeomFromText(:coordenadas))";
+                        "VALUES (:id ,:nombre, :descripcion, :id_estado_tarea, :id_emergencia, ST_GeomFromText(:coordenadas,4326))";
 
 
         try(Connection conn = sql2o.open()){
@@ -61,7 +61,7 @@ public class TareaRepositoryImp implements TareaRepository{
     public String updateTarea(int id, Tarea tarea) {
         String updateSql = "UPDATE tarea " +
                 "SET nombre = :tareaNombre, descripcion = :tareaDescripcion,  " +
-                "id_estado_tarea = :tareaid_estado_tarea, id_emergencia = :tareaid_emergencia, coordenadas = ST_GeomFromText(:coordenadas), updated_at = :tareaNuevaFecha " +
+                "id_estado_tarea = :tareaid_estado_tarea, id_emergencia = :tareaid_emergencia, coordenadas = ST_GeomFromText(:coordenadas,4326), updated_at = :tareaNuevaFecha " +
                 "WHERE id = :tareaID";
 
         Date fecha = new Date();

@@ -35,7 +35,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
     public String createEmergencia(Emergencia emergencia) {
         String sql =
                 "INSERT INTO emergencia (id, nombre, ubicacion, fecha, descripcion,coordenadas) " +
-                        "VALUES (:id, :nombre, :ubicacion, :fecha, :descripcion,ST_GeomFromText(:coordenadas))";
+                        "VALUES (:id, :nombre, :ubicacion, :fecha, :descripcion,ST_GeomFromText(:coordenadas,4326))";
 
         int nuevoId = getIdEmergenciaMayor() + 1;
 
@@ -89,7 +89,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
         String updateSql = "UPDATE emergencia " +
                             "SET nombre = :emergenciaNombre, ubicacion = :emergenciaUbicacion, " +
                             "fecha = :emergenciaFecha, descripcion = :emergenciaDescripcion, updated_at = :emergenciaFechaActualizacion, " +
-                            "coordenadas = ST_GeomFromText(:emergenciaCoordenadas)"+
+                            "coordenadas = ST_GeomFromText(:emergenciaCoordenadas,4326)"+
                             "WHERE id = :emergenciaID";
 
         //Se colnsigue el timestamp actual para la actualización
@@ -140,7 +140,7 @@ public class EmergenciaRepositoryImp implements EmergenciaRepository{
             if (emergencia.getCoordenadas()!=null){
                 consulta.addParameter("emergenciaCoordenadas","POINT("+emergencia.getCoordenadas()+")");
             }else {
-                consulta.addParameter("emergenciaCoordenadas",antiguo.getCoordenadas());
+                consulta.addParameter("emergenciaCoordenadas","POINT("+antiguo.getCoordenadas()+")");
             }
             //Se cambia la fecha de actualizacion
             consulta.addParameter("emergenciaFechaActualizacion",timestamp);
