@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651d"
+  },
+  "estado_salud": "estresado",
+  "nombre": "hector",
+  "apellido": "Ballesteros",
+  "correo_electronico": "hector.ballesteros@usach.cl",
+  "password": "hola123"
+},{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651e"
+  },
+  "estado_salud": "Bueno",
+  "nombre": "Maximiliano",
+  "apellido": "Valenzuela",
+  "correo_electronico": "maxi.valenzuela@usach.cl",
+  "password": "maxi123"
+},{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651f"
+  },
+  "estado_salud": "Saludable",
+  "nombre": "Elvis",
+  "apellido": "Cocho",
+  "correo_electronico": "elvis.cocho@usach.cl",
+  "password": "elviscocho123"
+},{
+  "_id": {
+    "$oid": "61ece5cabea44f299b856521"
+  },
+  "estado_salud": "Saludable",
+  "nombre": "Israel",
+  "apellido": "Arias",
+  "correo_electronico": "israel.arias@usach.cl",
+  "password": "pollocrispy"
+},{
+  "_id": {
+    "$oid": "61ece634bea44f299b856523"
+  },
+  "estado_salud": "Saludable",
+  "nombre": "Joseph",
+  "apellido": "Toro",
+  "correo_electronico": "joseph.toro@gmail.com",
+  "password": "qwerty"
+}]
