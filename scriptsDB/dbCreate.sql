@@ -172,3 +172,13 @@ CREATE TABLE  ranking (
     created_at timestamp default now(),
     updated_at timestamp default now()
 );
+
+CREATE TABLE  voluntario_tarea (
+    id     serial NOT NULL, PRIMARY KEY(id),
+    id_tarea integer,
+    FOREIGN KEY(id_tarea) REFERENCES tarea(id) ON DELETE CASCADE,
+    id_voluntario integer,
+    FOREIGN KEY(id_voluntario) REFERENCES voluntario(id) ON DELETE CASCADE,
+    created_at timestamp default now(),
+    updated_at timestamp default now()
+);
