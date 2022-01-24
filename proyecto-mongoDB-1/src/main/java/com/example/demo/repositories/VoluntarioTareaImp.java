@@ -28,24 +28,7 @@ public class VoluntarioTareaImp implements VoluntarioTareaRepository{
     @Autowired
     MongoTemplate mongoTemplate;
     @Override
-    public List<Voluntario> findByTarea(String idTarea) {
-        LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("voluntario_tarea")
-                .localField("_id")
-                .foreignField("id_voluntario")
-                .as("result");
-        AggregationOperation match = Aggregation.match(Criteria.where("id_tarea").is(idTarea));
-        Aggregation aggregation = Aggregation.newAggregation(
-                lookupOperation,
-                match);
-        List<Voluntario> results = mongoTemplate.aggregate(aggregation, "voluntario", Voluntario.class).getMappedResults();
-
-        return results;
-
-    }
-
-    @Override
-    public ArrayList<Document> findByTareaB(String id) {
+    public ArrayList<Document> findByTarea(String id) {
         MongoCollection<Document> collection = database.getCollection("voluntario");
         AggregateIterable<Document> r = collection.aggregate(Arrays.asList(new Document("$lookup",
                         new Document("from", "voluntario_tarea")

@@ -8,6 +8,5 @@ import com.mongodb.client.FindIterable;
 import org.bson.Document;
 
 public interface VoluntarioTareaRepository {
-    public List<Voluntario> findByTarea(String id);
-    public ArrayList<Document> findByTareaB(String id);
+    public ArrayList<Document> findByTarea(String id);
 }

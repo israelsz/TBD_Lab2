@@ -19,14 +19,9 @@ public class VoluntarioTareaService {
     VoluntarioTareaService(VoluntarioTareaRepository voluntarioTareaRepository){
         this.voluntarioTareaRepository = voluntarioTareaRepository;
     }
-    @GetMapping("/voluntarioTarea/{idTarea}")
-    public List<Voluntario> findByTarea(@PathVariable(value = "idTarea") String idTarea){
-        List<Voluntario> result = voluntarioTareaRepository.findByTarea(idTarea);
-        return result;
-    }
     @GetMapping("/voluntariosTarea/{idTarea}")
-    public ArrayList<Document>findByTareaB(@PathVariable(value = "idTarea") String idTarea){
-        ArrayList<Document> result = voluntarioTareaRepository.findByTareaB(idTarea);
+    public ArrayList<Document>findByTarea(@PathVariable(value = "idTarea") String idTarea){
+        ArrayList<Document> result = voluntarioTareaRepository.findByTarea(idTarea);
         return result;
     }
 
