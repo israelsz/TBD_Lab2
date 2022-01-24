@@ -75,58 +75,13 @@ export default {
       this.points = [];
       this.poligono = [];
     },
-    async createPoint() {
-      //Crear un nuevo punto
-      this.message = "";
-      let newPoint = {
-        name: this.name,
-        latitude: this.latitude,
-        longitude: this.longitude,
-      };
-
-      try {
-        let response = await axios.post("http://localhost:3000/dogs", newPoint);
-        console.log("response", response.data);
-        let id = response.data.id;
-        this.message = `${this.name} fue creado con éxito con id: ${id}`;
-        this.name = "";
-        this.clearMarkers(this.map);
-        this.getPoints(this.map);
-      } catch (error) {
-        console.log("error", error);
-        this.message = "Ocurrió un error";
-      }
-    },
-    async getPoints(map) {
-      try {
-        //se llama el servicio
-        let response = await this.$axios.$get("/tareas");
-        console.log(response);
-        let dataPoints = response.data;
-        //Se itera por los puntos
-        dataPoints.forEach((point) => {
-          //Se crea un marcador por cada punto
-          let p = [point.latitude, point.longitude];
-          let marker = L.marker(p, { icon: myIcon }) //se define el ícono del marcador
-            .bindPopup(point.name); //Se agrega un popup con el nombre
-
-          //Se agrega a la lista
-          this.points.push(marker);
-        });
-        //Los puntos de la lista se agregan al mapa
-        this.points.forEach((p) => {
-          p.addTo(map);
-        });
-      } catch (error) {
-        console.log("error", error);
-      }
-    },
      async conseguirRegiones() {
       const respuesta = await this.$axios.$get("/regiones");
       this.regiones = respuesta;
     },
     async onChangeRegion() {
       this.clearMarkers(this.map);
+
       const respuesta2 = await this.$axios.$get(`/polyregion/${this.regionSeleccionada.gid}`);
 
       if(respuesta2[0].array_to_string == null){
@@ -153,7 +108,6 @@ export default {
         dataPoints.forEach((point) => {
           //Se crea un marcador por cada punto
           let p = [point.longitude, point.latitude];
-          console.log(p);
           let marker = L.marker(p, "leaflet/dist/images/marker-icon.png") //se define el ícono del marcador
             .bindPopup(point.nombre).openPopup(); //Se agrega un popup con el nombre
 
@@ -166,11 +120,7 @@ export default {
           });
     
         });
-       
-
-        //this.poligono = respuesta2;
-      //console.log(respuesta2);
-    
+      
     }     
   },
   mounted: function () {
@@ -187,10 +137,8 @@ export default {
     }).addTo(this.map);
    
     //Se cargan las regiones
-    console.log("Hola");
     this.conseguirRegiones();
-    //Se agregan los puntos mediante llamada al servicio
-    //this.getPoints(this.mymap);
+
   },
 };
 </script>
