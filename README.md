@@ -1,5 +1,5 @@
 
-# Laboratorio N°1 Grupo 4 TBD
+# Laboratorio N°2 Grupo 4 TBD
 
 Laboratorio N°1 Para la asignatura Taller de base de datos
 

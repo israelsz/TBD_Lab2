@@ -8,8 +8,8 @@ import org.bson.types.ObjectId;
 public class Voluntario_Habilidad {
 	@BsonId
     ObjectId _id;
-    private Integer id_voluntario;
-    private Integer id_habilidad;
+    private String id_voluntario;
+    private String id_habilidad;
     private Date created_at;
     private Date updated_at;
 
@@ -22,17 +22,17 @@ public class Voluntario_Habilidad {
 		this._id = _id;
 	}
 
-    public Integer getId_voluntario() {
+    public String getId_voluntario() {
         return id_voluntario;
     }
-    public void setId_voluntario(int id_voluntario) {
+    public void setId_voluntario(String id_voluntario) {
         this.id_voluntario = id_voluntario;
     }
 
-    public Integer getId_habilidad() {
+    public String getId_habilidad() {
         return id_habilidad;
     }
-    public void setId_habilidad(int id_habilidad) {
+    public void setId_habilidad(String id_habilidad) {
         this.id_habilidad = id_habilidad;
     }
 

@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651d"
+  },
+  "id_voluntario": {
+    "$oid": "61ece537bea44f299b85651d"
+  },
+  "id_tarea": "1"
+},{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651e"
+  },
+  "id_voluntario": {
+    "$oid": "61ece537bea44f299b85651e"
+  },
+  "id_tarea": "2"
+},{
+  "_id": {
+    "$oid": "61ece537bea44f299b85651f"
+  },
+  "id_voluntario": {
+    "$oid": "61ece537bea44f299b85651f"
+  },
+  "id_tarea": "1"
+},{
+  "_id": {
+    "$oid": "61ece5cabea44f299b856521"
+  },
+  "id_voluntario": {
+    "$oid": "61ece5cabea44f299b856521"
+  },
+  "id_tarea": "1"
+}]
