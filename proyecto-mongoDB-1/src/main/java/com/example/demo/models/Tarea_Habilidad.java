@@ -8,8 +8,8 @@ import org.bson.types.ObjectId;
 public class Tarea_Habilidad {
 	@BsonId
     ObjectId _id;
-    private Integer id_tarea;
-    private Integer id_eme_habilidad;
+    private String id_tarea;
+    private String id_eme_habilidad;
     private Date created_at;
     private Date updated_at;
 
@@ -22,17 +22,17 @@ public class Tarea_Habilidad {
 		this._id = _id;
 	}
 
-    public Integer getId_tarea() {
+    public String getId_tarea() {
         return id_tarea;
     }
-    public void setId_tarea(int id_tarea) {
+    public void setId_tarea(String id_tarea) {
         this.id_tarea = id_tarea;
     }
 
-    public Integer getId_eme_habilidad() {
+    public String getId_eme_habilidad() {
         return id_eme_habilidad;
     }
-    public void setId_eme_habilidad(int id_eme_habilidad) {
+    public void setId_eme_habilidad(String id_eme_habilidad) {
         this.id_eme_habilidad = id_eme_habilidad;
     }
 
