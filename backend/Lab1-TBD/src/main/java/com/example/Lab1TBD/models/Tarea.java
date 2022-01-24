@@ -12,6 +12,8 @@ public class Tarea {
     private Date updated_at;
     private Integer id_emergencia;
     private String coordenadas;
+    private double longitude;
+    private double latitude;
 
 
     //Getters y Setters
@@ -56,12 +58,27 @@ public class Tarea {
         this.updated_at = fecha;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 
     public String getCoordenadas() {
         return coordenadas;
     }
+
     public void setCoordenadas(String coordenadas) {
         this.coordenadas = coordenadas;
     }
-
 }

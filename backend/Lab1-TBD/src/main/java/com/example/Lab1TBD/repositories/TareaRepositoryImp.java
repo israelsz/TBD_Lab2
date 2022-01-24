@@ -47,7 +47,7 @@ public class TareaRepositoryImp implements TareaRepository{
     @Override
     public List<Tarea> getAllTareas() {
         final String sql =
-                "SELECT * FROM tarea";
+                "SELECT id,nombre,descripcion,id_estado_tarea,id_emergencia, st_x(st_astext(coordenadas)) AS longitude, st_y(st_astext(coordenadas)) AS latitude FROM tarea";
         try(Connection conn = sql2o.open()){
             return conn.createQuery(sql)
                     .executeAndFetch(Tarea.class);
@@ -150,6 +150,20 @@ public class TareaRepositoryImp implements TareaRepository{
         }catch(Exception e){
             System.out.println(e.getMessage());
             return 0;
+        }
+    }
+
+    public List<Tarea> getTareasByRegion(int gid){
+        final String sql =
+                "SELECT id,nombre,descripcion,id_estado_tarea,id_emergencia, st_x(st_astext(coordenadas)) AS longitude, st_y(st_astext(coordenadas)) AS latitude FROM division_regional dr , tarea t where " +
+                        "ST_CONTAINS(dr.geom,ST_FlipCoordinates(t.coordenadas)) and dr.gid = :tid";
+        try(Connection conn = sql2o.open()){
+            return conn.createQuery(sql)
+                    .addParameter("tid",gid)
+                    .executeAndFetch(Tarea.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

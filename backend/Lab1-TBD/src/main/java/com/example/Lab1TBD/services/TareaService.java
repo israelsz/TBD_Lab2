@@ -51,4 +51,11 @@ public class TareaService {
     public String deleteTarea(@PathVariable int id){
         return TareaRepository.deleteTarea(id);
     }
+
+    //Conseguir tareas por region
+    @GetMapping("/tareaByRegion/{id}")
+    @ResponseBody
+    public List<Tarea> getTareasByRegion(@PathVariable int id){
+        return TareaRepository.getTareasByRegion(id);
+    }
 }

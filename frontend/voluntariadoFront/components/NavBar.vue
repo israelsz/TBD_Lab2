@@ -19,6 +19,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item class="enlace"> <NuxtLink to="/">Inicio</NuxtLink> </b-nav-item>
           <b-nav-item class="enlace"> <NuxtLink to="/ranking">Ranking</NuxtLink> </b-nav-item>
+          <b-nav-item class="enlace"> <NuxtLink to="/mapa-tareas">Mapa de tareas</NuxtLink> </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

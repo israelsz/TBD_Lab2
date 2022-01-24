@@ -10,4 +10,5 @@ public interface TareaRepository {
     public String updateTarea(int id, Tarea tarea); //Update
     public String deleteTarea(int id);
     public Tarea getTarea(int id);
+    public List<Tarea> getTareasByRegion(int gid);
 }
